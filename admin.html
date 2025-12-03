@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENTS SERVICE - Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ADMIN LOGIN SCREEN */
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .login-icon {
+            font-size: 4rem;
+            color: #4361ee;
+            margin-bottom: 20px;
+        }
+        
+        .login-title {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .login-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            text-align: center;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .password-input:focus {
+            border-color: #4361ee;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            outline: none;
+        }
+        
+        .login-btn {
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+        }
+        
+        .login-error {
+            color: #ff4757;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .login-hint {
+            color: #999;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        
+        /* ADMIN PANEL STYLES */
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: none;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .admin-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .admin-title i {
+            color: #4cc9f0;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .logout-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        
+        .logout-btn:hover {
+            background: #ff3838;
+        }
+        
+        /* STATS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4361ee, #3a0ca3);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .stat-trend {
+            font-size: 0.9rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .trend-up {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .trend-down {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .stat-sub {
+            color: #4361ee;
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* ORDERS SECTION */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            color: #1a1a2e;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .filters-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+        
+        .filter-btn {
+            background: #4361ee;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover {
+            background: #3a0ca3;
+        }
+        
+        .reset-btn {
+            background: #666;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .reset-btn:hover {
+            background: #555;
+        }
+        
+        /* ORDERS TABLE */
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .orders-table th {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 18px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .orders-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .orders-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .order-id {
+            color: #4361ee;
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .order-status {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .status-new { background: #ffeaa7; color: #d63031; }
+        .status-qabul_qilindi { background: #a29bfe; color: #6c5ce7; }
+        .status-jarayonda { background: #74b9ff; color: #0984e3; }
+        .status-tayyor { background: #55efc4; color: #00b894; }
+        .status-yetkazildi { background: #81ecec; color: #00cec9; }
+        .status-yakunlandi { background: #fd79a8; color: #e84393; }
+        
+        .order-items {
+            max-width: 250px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .view-btn {
+            background: #4cc9f0;
+            color: white;
+        }
+        
+        .edit-btn {
+            background: #4361ee;
+            color: white;
+        }
+        
+        .delete-btn {
+            background: #ff4757;
+            color: white;
+        }
+        
+        /* STATUS CHART */
+        .status-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .status-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #f0f0f0;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .status-item:hover {
+            border-color: #4361ee;
+            transform: translateY(-3px);
+        }
+        
+        .status-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .status-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .status-count {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        
+        /* PRODUCTS TABLE */
+        .products-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .products-table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .products-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .product-rank {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        /* CUSTOMERS TABLE */
+        .customers-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .customers-table th {
+            background: #f8f9fa;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .customers-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .orders-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .filters-bar {
+                flex-direction: column;
+            }
+            
+            .filter-input {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .admin-header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-chart {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .order-actions {
+                flex-direction: column;
+            }
+        }
+        
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { 
+                transform: translateY(-20px); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0); 
+                opacity: 1; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <div class="login-icon">
+                <i class="fas fa-user-shield"></i>
+            </div>
+            <h2 class="login-title">Admin Panel</h2>
+            <p class="login-subtitle">KENTS SERVICE - Maxsus admin paneliga kirish</p>
+            
+            <input type="password" 
+                   id="passwordInput" 
+                   class="password-input" 
+                   placeholder="Parolni kiriting"
+                   maxlength="10"
+                   autocomplete="off">
+            
+            <button id="loginButton" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i> Kirish
+            </button>
+            
+            <div id="loginError" class="login-error">
+                <i class="fas fa-exclamation-circle"></i> Noto'g'ri parol!
+            </div>
+            
+            <div class="login-hint">
+                <i class="fas fa-info-circle"></i> Faqat ruxsat etilgan adminlar kirishi mumkin
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL (Ko'rinmaydi) -->
+    <div id="adminPanel" class="admin-container">
+        <!-- Header -->
+        <div class="admin-header">
+            <div class="admin-header-content">
+                <div class="admin-title">
+                    <i class="fas fa-user-shield"></i>
+                    <h1>KENTS SERVICE - Admin Panel</h1>
+                </div>
+                
+                <div class="admin-actions">
+                    <button id="refreshBtn" class="filter-btn">
+                        <i class="fas fa-sync-alt"></i> Yangilash
+                    </button>
+                    <button id="logoutBtn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Chiqish
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistika Dashboard -->
+        <section id="statsSection">
+            <h2 class="section-title"><i class="fas fa-chart-bar"></i> Statistika Dashboard</h2>
+            <div id="statsContainer"></div>
+        </section>
+
+        <!-- Buyurtmalar -->
+        <section id="ordersSection" class="section">
+            <h2 class="section-title"><i class="fas fa-shopping-cart"></i> Barcha Buyurtmalar</h2>
+            
+            <div class="filters-bar">
+                <input type="text" 
+                       id="searchInput" 
+                       class="filter-input" 
+                       placeholder="ID, mijoz ismi yoki telefon bo'yicha qidirish...">
+                
+                <select id="statusFilter" class="filter-input">
+                    <option value="">Barcha holatlar</option>
+                    <option value="yangi">Yangi</option>
+                    <option value="qabul_qilindi">Qabul qilindi</option>
+                    <option value="jarayonda">Jarayonda</option>
+                    <option value="tayyor">Tayyor</option>
+                    <option value="yetkazildi">Yetkazildi</option>
+                    <option value="yakunlandi">Yakunlandi</option>
+                </select>
+                
+                <input type="date" id="dateFilter" class="filter-input">
+                
+                <button id="applyFilters" class="filter-btn">
+                    <i class="fas fa-search"></i> Qidirish
+                </button>
+                
+                <button id="resetFilters" class="reset-btn">
+                    <i class="fas fa-times"></i> Tozalash
+                </button>
+            </div>
+            
+            <div id="ordersTableContainer">
+                <!-- Bu yerda jadval yuklanadi -->
+            </div>
+        </section>
+
+        <!-- Statuslar statistikasi -->
+        <section id="statusSection" class="section">
+            <h2 class="section-title"><i class="fas fa-chart-pie"></i> Statuslar Taqsimoti</h2>
+            <div id="statusChart" class="status-chart">
+                <!-- Statuslar bu yerda -->
+            </div>
+        </section>
+
+        <!-- Mashhur mahsulotlar -->
+        <section id="productsSection" class="section">
+            <h2 class="section-title"><i class="fas fa-box"></i> Top 10 Mahsulotlar</h2>
+            <div id="productsTableContainer">
+                <!-- Mahsulotlar jadvali -->
+            </div>
+        </section>
+
+        <!-- Top mijozlar -->
+        <section id="customersSection" class="section">
+            <h2 class="section-title"><i class="fas fa-users"></i> Top 10 Mijozlar</h2>
+            <div id="customersTableContainer">
+                <!-- Mijozlar jadvali -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="tracker.js"></script>
+    <script src="order-sync.js"></script>
+    
+    <script>
+        // ===== ADMIN PAROL SOZLASH =====
+        const ADMIN_PASSWORD = "555AW77HK"; // Admin paroli
+        
+        // ===== LOGIN FUNCTIONS =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginScreen = document.getElementById('loginScreen');
+            const passwordInput = document.getElementById('passwordInput');
+            const loginButton = document.getElementById('loginButton');
+            const loginError = document.getElementById('loginError');
+            const adminPanel = document.getElementById('adminPanel');
+            
+            // Avval tekshirish: oldin kirganmi?
+            const isLoggedIn = localStorage.getItem('admin_logged_in') === 'true';
+            
+            if (isLoggedIn) {
+                // Admin panelni ko'rsatish
+                loginScreen.style.display = 'none';
+                adminPanel.style.display = 'block';
+                initAdminPanel();
+            }
+            
+            // Kirish tugmasi
+            loginButton.addEventListener('click', function() {
+                if (passwordInput.value === ADMIN_PASSWORD) {
+                    // Kirish muvaffaqiyatli
+                    localStorage.setItem('admin_logged_in', 'true');
+                    loginScreen.style.display = 'none';
+                    adminPanel.style.display = 'block';
+                    initAdminPanel();
+                } else {
+                    // Xato parol
+                    loginError.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                    
+                    // 3 soniyadan keyin xatoni yashirish
+                    setTimeout(() => {
+                        loginError.style.display = 'none';
+                    }, 3000);
+                }
+            });
+            
+            // Enter tugmasi
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    loginButton.click();
+                }
+            });
+            
+            // Parol input'iga e'tibor
+            passwordInput.focus();
+            
+            // Parolni ko'rsatish/yashirish
+            passwordInput.addEventListener('input', function() {
+                if (this.value.length > 0) {
+                    this.type = 'text';
+                    setTimeout(() => {
+                        this.type = 'password';
+                    }, 500);
+                }
+            });
+        });
+        
+        // ===== ADMIN PANEL FUNCTIONS =====
+        function initAdminPanel() {
+            console.log('Admin panel ishga tushdi');
+            
+            // Logout tugmasi
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Admin paneldan chiqishni istaysizmi?')) {
+                    localStorage.removeItem('admin_logged_in');
+                    window.location.reload();
+                }
+            });
+            
+            // Yangilash tugmasi
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                loadAllData();
+                showNotification('Ma\'lumotlar yangilandi!');
+            });
+            
+            // Filtrlarni qo'llash
+            document.getElementById('applyFilters').addEventListener('click', function() {
+                loadOrders();
+            });
+            
+            // Filtrlarni tozalash
+            document.getElementById('resetFilters').addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('statusFilter').value = '';
+                document.getElementById('dateFilter').value = '';
+                loadOrders();
+            });
+            
+            // Dastlabki ma'lumotlarni yuklash
+            loadAllData();
+        }
+        
+        // ===== BARCHA MA'LUMOTLARNI YUKLASH =====
+        function loadAllData() {
+            loadStats();
+            loadOrders();
+            loadStatusChart();
+            loadTopProducts();
+            loadTopCustomers();
+        }
+        
+        // ===== STATISTIKANI YUKLASH =====
+        function loadStats() {
+            const stats = window.orderTracker?.getStats() || getDefaultStats();
+            const container = document.getElementById('statsContainer');
+            
+            container.innerHTML = `
+                <div class="stats-grid">
+                    <!-- Umumiy buyurtmalar -->
+                    <div class="stat-card total">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <span class="stat-trend trend-up">+${stats.today.orders} bugun</span>
+                        </div>
+                        <div class="stat-value">${stats.totalOrders}</div>
+                        <div class="stat-label">Jami Buyurtma</div>
+                        <div class="stat-sub">O'tgan oyga nisbatan +12.5%</div>
+                    </div>
+                    
+                    <!-- Daromad -->
+                    <div class="stat-card revenue">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <span class="stat-trend trend-up">+${stats.today.revenue.toLocaleString()} UZS</span>
+                        </div>
+                        <div class="stat-value">${stats.totalRevenue.toLocaleString()} UZS</div>
+                        <div class="stat-label">Jami Daromad</div>
+                        <div class="stat-sub">O'tgan haftaga nisbatan +8.3%</div>
+                    </div>
+                    
+                    <!-- Bugungi -->
+                    <div class="stat-card today">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <span class="stat-trend trend-up">Bugun</span>
+                        </div>
+                        <div class="stat-value">${stats.today.orders}</div>
+                        <div class="stat-label">Bugungi Buyurtmalar</div>
+                        <div class="stat-sub">${stats.today.revenue.toLocaleString()} UZS daromad</div>
+                    </div>
+                    
+                    <!-- Mijozlar -->
+                    <div class="stat-card customers">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span class="stat-trend trend-up">+3 yangi</span>
+                        </div>
+                        <div class="stat-value">${getUniqueCustomers(stats).length}</div>
+                        <div class="stat-label">Jami Mijozlar</div>
+                        <div class="stat-sub">${stats.monthly.orders} ta oylik buyurtma</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // ===== BUYURTMALARNI YUKLASH =====
+        function loadOrders() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const status = document.getElementById('statusFilter').value;
+            const date = document.getElementById('dateFilter').value;
+            
+            const orders = window.orderSync?.getAllOrders() || getSampleOrders();
+            const container = document.getElementById('ordersTableContainer');
+            
+            if (orders.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 50px; color: #666; background: #f8f9fa; border-radius: 15px;">
+                        <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 20px; color: #ddd;"></i>
+                        <h3 style="margin-bottom: 10px;">Buyurtmalar topilmadi</h3>
+                        <p>Hech qanday buyurtma mavjud emas yoki filtr natijasi bo'sh</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let tableHTML = `
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Mijoz</th>
+                            <th>Telefon</th>
+                            <th>Qurilma</th>
+                            <th>Mahsulotlar</th>
+                            <th>Summa</th>
+                            <th>Holat</th>
+                            <th>Sana</th>
+                            <th>Harakatlar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            orders.forEach(order => {
+                const itemsText = order.items?.map(item => 
+                    `${item.name} × ${item.quantity}`
+                ).join(', ') || 'Noma\'lum';
+                
+                const date = new Date(order.createdAt || order.date);
+                const formattedDate = date.toLocaleDateString('uz-UZ');
+                const formattedTime = date.toLocaleTimeString('uz-UZ', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+                
+                tableHTML += `
+                    <tr>
+                        <td><span class="order-id">${order.id}</span></td>
+                        <td><strong>${order.customerName}</strong></td>
+                        <td>${order.customerContact || order.customerPhone}</td>
+                        <td><small>${order.deviceType || 'Noma\'lum'}</small></td>
+                        <td class="order-items">${itemsText}</td>
+                        <td><strong style="color: #f72585;">${order.total?.toLocaleString()} UZS</strong></td>
+                        <td>
+                            <span class="order-status status-${order.status || 'yangi'}">
+                                ${getStatusText(order.status || 'yangi')}
+                            </span>
+                        </td>
+                        <td>${formattedDate}<br><small>${formattedTime}</small></td>
+                        <td>
+                            <div class="order-actions">
+                                <button class="action-btn view-btn" onclick="viewOrderDetails('${order.id}')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn edit-btn" onclick="editOrderStatus('${order.id}')">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = tableHTML;
+        }
+        
+        // ===== STATUS CHART =====
+        function loadStatusChart() {
+            const stats = window.orderTracker?.getStats() || getDefaultStats();
+            const container = document.getElementById('statusChart');
+            
+            const statusData = [
+                { status: 'yangi', label: 'Yangi', color: '#ff7675', count: stats.statusCounts.yangi || 0 },
+                { status: 'qabul_qilindi', label: 'Qabul qilindi', color: '#a29bfe', count: stats.statusCounts.qabul_qilindi || 0 },
+                { status: 'jarayonda', label: 'Jarayonda', color: '#74b9ff', count: stats.statusCounts.jarayonda || 0 },
+                { status: 'tayyor', label: 'Tayyor', color: '#55efc4', count: stats.statusCounts.tayyor || 0 },
+                { status: 'yetkazildi', label: 'Yetkazildi', color: '#81ecec', count: stats.statusCounts.yetkazildi || 0 },
+                { status: 'yakunlandi', label: 'Yakunlandi', color: '#fd79a8', count: stats.statusCounts.yakunlandi || 0 }
+            ];
+            
+            container.innerHTML = statusData.map(item => `
+                <div class="status-item">
+                    <div class="status-dot" style="background: ${item.color};"></div>
+                    <div class="status-name">${item.label}</div>
+                    <div class="status-count">${item.count}</div>
+                </div>
+            `).join('');
+        }
+        
+        // ===== TOP MAHSULOTLAR =====
+        function loadTopProducts() {
+            const stats = window.orderTracker?.getStats() || getDefaultStats();
+            const products = stats.popularProducts || getSampleProducts();
+            const container = document.getElementById('productsTableContainer');
+            
+            let tableHTML = `
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mahsulot nomi</th>
+                            <th>Sotilgan miqdor</th>
+                            <th>Daromad</th>
+                            <th>O'rtacha narx</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            products.forEach((product, index) => {
+                const avgPrice = Math.round(product.revenue / product.quantity);
+                
+                tableHTML += `
+                    <tr>
+                        <td><span class="product-rank">${index + 1}</span></td>
+                        <td><strong>${product.name}</strong></td>
+                        <td>${product.quantity} dona</td>
+                        <td><strong style="color: #f72585;">${product.revenue.toLocaleString()} UZS</strong></td>
+                        <td>${avgPrice.toLocaleString()} UZS</td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = tableHTML;
+        }
+        
+        // ===== TOP MIJOZLAR =====
+        function loadTopCustomers() {
+            const customers = window.orderTracker?.getCustomerStats() || getSampleCustomers();
+            const container = document.getElementById('customersTableContainer');
+            
+            let tableHTML = `
+                <table class="customers-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Mijoz</th>
+                            <th>Telefon</th>
+                            <th>Buyurtmalar</th>
+                            <th>Jami sarf</th>
+                            <th>Oxirgi buyurtma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            customers.slice(0, 10).forEach((customer, index) => {
+                const firstLetter = customer.name?.charAt(0)?.toUpperCase() || 'M';
+                const lastOrder = new Date(customer.lastOrder).toLocaleDateString('uz-UZ');
+                
+                tableHTML += `
+                    <tr>
+                        <td><span class="product-rank">${index + 1}</span></td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div class="customer-avatar">${firstLetter}</div>
+                                <div>
+                                    <strong>${customer.name}</strong>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${customer.phone || 'Noma\'lum'}</td>
+                        <td>${customer.orders} ta</td>
+                        <td><strong style="color: #f72585;">${customer.totalSpent.toLocaleString()} UZS</strong></td>
+                        <td>${lastOrder}</td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += `
+                    </tbody>
+                </table>
+            `;
+            
+            container.innerHTML = tableHTML;
+        }
+        
+        // ===== YORDAMCHI FUNKSIYALAR =====
+        function getStatusText(status) {
+            const statusMap = {
+                'yangi': '🆕 Yangi',
+                'qabul_qilindi': '✅ Qabul qilindi',
+                'jarayonda': '⚙️ Jarayonda',
+                'tayyor': '🎉 Tayyor',
+                'yetkazildi': '🚚 Yetkazildi',
+                'yakunlandi': '🏁 Yakunlandi'
+            };
+            return statusMap[status] || status;
+        }
+        
+        function getUniqueCustomers(stats) {
+            // Mijozlarni olish
+            return [];
+        }
+        
+        function showNotification(message) {
+            // Oddiy xabarnoma
+            alert(message);
+        }
+        
+        function viewOrderDetails(orderId) {
+            const order = window.orderSync?.getOrderById(orderId);
+            
+            if (!order) {
+                alert('Buyurtma topilmadi!');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            modal.innerHTML = `
+                <div style="
+                    background: white;
+                    border-radius: 20px;
+                    padding: 30px;
+                    max-width: 600px;
+                    width: 90%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    position: relative;
+                ">
+                    <button onclick="this.parentElement.parentElement.remove()" 
+                            style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">
+                        ×
+                    </button>
+                    
+                    <h2 style="color: #333; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-invoice"></i>
+                        Buyurtma #${order.id}
+                    </h2>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <h4 style="color: #666; margin-bottom: 5px;">Mijoz:</h4>
+                                <p style="font-weight: 600; color: #333;">${order.customerName}</p>
+                            </div>
+                            <div>
+                                <h4 style="color: #666; margin-bottom: 5px;">Telefon:</h4>
+                                <p style="font-weight: 600; color: #333;">${order.customerContact || order.customerPhone}</p>
+                            </div>
+                            <div>
+                                <h4 style="color: #666; margin-bottom: 5px;">Qurilma:</h4>
+                                <p>${order.deviceType || 'Noma\'lum'} (${order.deviceId || 'Noma\'lum'})</p>
+                            </div>
+                            <div>
+                                <h4 style="color: #666; margin-bottom: 5px;">Holat:</h4>
+                                <p><span class="order-status status-${order.status}">${getStatusText(order.status)}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: #333; margin-bottom: 15px;">Mahsulotlar:</h3>
+                    <div style="margin-bottom: 20px;">
+                        ${order.items?.map(item => `
+                            <div style="display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee;">
+                                <div>
+                                    <strong>${item.name}</strong>
+                                    <div style="color: #666; font-size: 0.9rem;">${item.price.toLocaleString()} UZS × ${item.quantity}</div>
+                                </div>
+                                <div style="font-weight: 600; color: #f72585;">
+                                    ${(item.price * item.quantity).toLocaleString()} UZS
+                                </div>
+                            </div>
+                        `).join('') || 'Noma\'lum'}
+                    </div>
+                    
+                    <div style="background: #fff8e1; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <h4 style="color: #666; margin-bottom: 5px;">Jami summa:</h4>
+                                <p style="font-size: 1.5rem; font-weight: 700; color: #f72585;">
+                                    ${order.total?.toLocaleString()} UZS
+                                </p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: #666; font-size: 0.9rem;">Sana:</div>
+                                <div style="font-weight: 600;">${new Date(order.createdAt).toLocaleString('uz-UZ')}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${order.notes ? `
+                        <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                            <h4 style="color: #1976d2; margin-bottom: 10px;">
+                                <i class="fas fa-sticky-note"></i> Mijoz izohi:
+                            </h4>
+                            <p style="color: #333;">${order.notes}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${order.gameAccount ? `
+                        <div style="background: #f3e5f5; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                            <h4 style="color: #7b1fa2; margin-bottom: 10px;">
+                                <i class="fas fa-gamepad"></i> O'yin akkaunti:
+                            </h4>
+                            <p style="color: #333;"><strong>${order.gameType || 'O\'yin'}:</strong> ${order.gameAccount}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${order.telegramAccount ? `
+                        <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                            <h4 style="color: #0088cc; margin-bottom: 10px;">
+                                <i class="fab fa-telegram"></i> Telegram akkaunti:
+                            </h4>
+                            <p style="color: #333;">@${order.telegramAccount}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${order.cryptoWallet ? `
+                        <div style="background: #fff3e0; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                            <h4 style="color: #ef6c00; margin-bottom: 10px;">
+                                <i class="fas fa-wallet"></i> Kripto hamyon:
+                            </h4>
+                            <p style="color: #333;">${order.cryptoWallet}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <button onclick="editOrderStatus('${order.id}')" 
+                            style="background: #4361ee; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600;">
+                        <i class="fas fa-edit"></i> Holatni o'zgartirish
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        // Holatni o'zgartirish
+        function editOrderStatus(orderId) {
+            const order = window.orderSync?.getOrderById(orderId);
+            
+            if (!order) {
+                alert('Buyurtma topilmadi!');
+                return;
+            }
+            
+            const newStatus = prompt(
+                `Buyurtma #${orderId} holatini o'zgartirish:\n\n` +
+                `1. yangi\n` +
+                `2. qabul_qilindi\n` +
+                `3. jarayonda\n` +
+                `4. tayyor\n` +
+                `5. yetkazildi\n` +
+                `6. yakunlandi\n\n` +
+                `Yangi holatni kiriting:`,
+                order.status || 'yangi'
+            );
+            
+            if (newStatus && window.orderTracker) {
+                if (confirm(`Buyurtma #${orderId} holatini o'zgartirishni tasdiqlaysizmi?`)) {
+                    // OrderTracker ni yangilash
+                    window.orderTracker.updateStatus(orderId, newStatus, 'Admin tomonidan o\'zgartirildi');
+                    
+                    // OrderSync ni yangilash
+                    const orders = window.orderSync.getAllOrders();
+                    const orderIndex = orders.findIndex(o => o.id === orderId);
+                    if (orderIndex !== -1) {
+                        orders[orderIndex].status = newStatus;
+                        orders[orderIndex].updatedAt = new Date().toISOString();
+                        localStorage.setItem('kents_all_orders', JSON.stringify(orders));
+                    }
+                    
+                    // UI ni yangilash
+                    loadAllOrders();
+                    
+                    alert('✅ Holat muvaffaqiyatli o\'zgartirildi!');
+                }
+            }
+        }
+        
+        // ===== NAMUNA MA'LUMOTLAR (agar orderTracker yo'q bo'lsa) =====
+        function getDefaultStats() {
+            return {
+                totalOrders: 15,
+                totalRevenue: 4500000,
+                today: { orders: 3, revenue: 850000 },
+                weekly: { orders: 12, revenue: 3200000 },
+                monthly: { orders: 45, revenue: 12500000 },
+                statusCounts: {
+                    yangi: 2,
+                    qabul_qilindi: 3,
+                    jarayonda: 4,
+                    tayyor: 2,
+                    yetkazildi: 3,
+                    yakunlandi: 1
+                },
+                popularProducts: getSampleProducts()
+            };
+        }
+        
+        function getSampleOrders() {
+            return [
+                {
+                    id: 'KENT-123456',
+                    customerName: 'Ali Valiyev',
+                    customerContact: '+998901234567',
+                    items: [{name: '1000 Gold', quantity: 2, price: 125000}],
+                    total: 250000,
+                    status: 'yangi',
+                    gameAccount: 'player123',
+                    gameType: 'standoff',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'KENT-123457',
+                    customerName: 'Dilshod Rajabov',
+                    customerContact: '@dilshod_r',
+                    items: [{name: 'Telegram Premium 1yil', quantity: 1, price: 307000}],
+                    total: 307000,
+                    status: 'jarayonda',
+                    telegramAccount: 'dilshod_r',
+                    createdAt: new Date(Date.now() - 86400000).toISOString()
+                }
+            ];
+        }
+        
+        function getSampleProducts() {
+            return [
+                { name: '1000 Gold', quantity: 25, revenue: 3125000 },
+                { name: 'Telegram Premium 1yil', quantity: 18, revenue: 5526000 },
+                { name: '500 Gold', quantity: 32, revenue: 2016000 },
+                { name: '325 UC', quantity: 15, revenue: 900000 },
+                { name: 'Telegram Stars 100', quantity: 42, revenue: 987000 }
+            ];
+        }
+        
+        function getSampleCustomers() {
+            return [
+                { name: 'Ali Valiyev', phone: '+998901234567', orders: 8, totalSpent: 1850000, lastOrder: new Date().toISOString() },
+                { name: 'Dilshod Rajabov', phone: '@dilshod_r', orders: 5, totalSpent: 1200000, lastOrder: new Date(Date.now() - 86400000).toISOString() },
+                { name: 'Gulnoza Xolmatova', phone: '+998912345678', orders: 3, totalSpent: 850000, lastOrder: new Date(Date.now() - 172800000).toISOString() }
+            ];
+        }
+    </script>
+</body>
+</html>
