@@ -25,7 +25,7 @@ const products = {
         { id: 17, name: "170 Gem", price: 79999, icon: "fas fa-gem" },
         { id: 18, name: "360 Gem", price: 149999, icon: "fas fa-gem" },
         { id: 19, name: "950 Gem", price: 346999, icon: "fas fa-gem" },
-        { id: 20, name: "Brawl Pass (Skida)", price: 27000, icon: "fas fa-ticket-alt" },
+        { id: 20, name: "Brawl Pass (Skida bo'lsa)", price: 27000, icon: "fas fa-ticket-alt" },
         { id: 21, name: "Brawl Pass", price: 58000, icon: "fas fa-ticket-alt" },
         { id: 22, name: "Brawl Pass Plus", price: 77000, icon: "fas fa-ticket-alt" }
     ],
@@ -308,3 +308,4 @@ function escapeHtml(text) {
     return div.innerHTML;
 
 }
+
