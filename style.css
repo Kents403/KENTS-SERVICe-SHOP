@@ -1,0 +1,1112 @@
+:root {
+    --primary: #4361ee;
+    --secondary: #3a0ca3;
+    --accent: #f72585;
+    --success: #4cc9f0;
+    --dark: #1a1a2e;
+    --light: #ffffff;
+    --gray: #8d99ae;
+    --shadow: 0 5px 15px rgba(0,0,0,0.1);
+    --radius: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background: var(--light);
+    box-shadow: var(--shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    position: relative;
+}
+
+.logo h1 {
+    color: var(--primary);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Nav Menu - YAXSHILANGAN */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 900px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+}
+
+.nav-menu a:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Cart Icon - YAXSHILANGAN */
+.cart-icon {
+    position: relative;
+    font-size: 1.4rem;
+    color: var(--primary);
+    cursor: pointer;
+    margin-left: 20px;
+    min-width: 50px;
+    flex-shrink: 0;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+/* ===== HERO ===== */
+.hero {
+    padding: 140px 0 80px;
+    text-align: center;
+    background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9));
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 12px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(67,97,238,0.3);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background: var(--light);
+}
+
+.bg-dark {
+    background: var(--dark);
+    color: white;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--secondary);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bg-dark .section-title {
+    color: white;
+}
+
+/* ===== TABS ===== */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--primary);
+    background: white;
+    color: var(--primary);
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.product-header {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.product-header i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.product-body {
+    padding: 20px;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-price {
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.btn-buy {
+    width: 100%;
+    padding: 12px;
+    background: var(--success);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-buy:hover {
+    background: #00b4d8;
+}
+
+/* ===== KRIPTOVALYUTA MODAL ===== */
+.crypto-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+    padding: 20px;
+}
+
+.crypto-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===== VIRTUAL RAQAMLAR ===== */
+.product-card .out-of-stock {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ef476f;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.btn-buy:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-buy:disabled:hover {
+    background: var(--success);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== KARTALAR UCHUN QO'SHIMCHA STILLAR ===== */
+.crypto-card .btn-crypto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.crypto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.crypto-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.crypto-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.crypto-card h3 {
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.crypto-card .price {
+    font-size: 1.3rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.crypto-card .note {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.btn-crypto {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.btn-crypto:hover {
+    background: #ff006e;
+}
+
+/* ===== ABOUT SECTION - YAXSHILANGAN (Jamoa kartasiz) ===== */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.about-card {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.15);
+}
+
+.about-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--success);
+}
+
+.about-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.about-card p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ===== NEWS SECTION - YAXSHILANGAN (3ta box qo'shildi) ===== */
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.news-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.news-date {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 20px;
+    min-width: 80px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.news-day {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.news-month {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.news-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.news-content h3 {
+    color: var(--dark);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.news-content p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.telegram-channel {
+    background: linear-gradient(135deg, #0088cc, #006699);
+    color: white;
+    padding: 40px;
+    border-radius: var(--radius);
+    text-align: center;
+    margin-top: 40px;
+}
+
+.channel-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.telegram-channel h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.telegram-channel p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-telegram-channel {
+    display: inline-block;
+    background: white;
+    color: #0088cc;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    margin-bottom: 20px;
+}
+
+.btn-telegram-channel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+}
+
+.channel-stats {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.channel-stats i {
+    margin-right: 5px;
+}
+
+/* ===== CONTACT - YAXSHILANGAN (Ish vaqti) ===== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-card {
+    text-align: center;
+    padding: 30px;
+    background: rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--success);
+}
+
+.contact-card h3 {
+    margin-bottom: 15px;
+}
+
+.contact-card p {
+    margin-bottom: 10px;
+    color: rgba(255,255,255,0.8);
+}
+
+.btn-telegram {
+    display: inline-block;
+    background: #0088cc;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.btn-telegram:hover {
+    background: #006699;
+}
+
+/* ===== CART MODAL ===== */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.cart-content {
+    background: white;
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.cart-header {
+    padding: 20px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.close-cart {
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.cart-body {
+    padding: 20px;
+}
+
+.cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-total {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--dark);
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--success);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.footer-col a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+.footer-col p {
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-text {
+    color: rgba(255,255,255,0.5);
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .hero {
+        padding: 120px 0 60px;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .products {
+        grid-template-columns: 1fr;
+    }
+    
+    .crypto-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .news-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .news-card {
+        flex-direction: column;
+    }
+    
+    .news-date {
+        min-width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    /* Mobile uchun kripto modal */
+    .crypto-modal {
+        padding: 20px;
+        max-width: 95%;
+    }
+    
+    .crypto-modal h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* ===== KICHIK EKRANLAR UCHUN MENYU ===== */
+@media (max-width: 1024px) {
+    .nav-menu {
+        gap: 12px;
+        max-width: 800px;
+    }
+    
+    .nav-menu a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .nav-menu a i {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-menu {
+        gap: 10px;
+    }
+    
+    .nav-menu a {
+        padding: 7px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: var(--success);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    z-index: 3000;
+    animation: slideIn 0.3s ease;
+    max-width: 300px;
+}
+
+/* ===== ORDER FORM STYLES ===== */
+.order-form-container {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: var(--radius);
+    margin-top: 20px;
+}
+
+.form-step {
+    animation: fadeIn 0.3s ease;
+}
+
+.step-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.form-hint {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.form-required {
+    color: #ff4757;
+}
+
+.product-info {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-name {
+    font-weight: 500;
+}
+
+.product-quantity {
+    font-size: 12px;
+    color: #666;
+}
+
+.product-total {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.order-summary {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-item:last-child {
+    margin-bottom: 0;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-back {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.btn-submit {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 2;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.btn-back:hover {
+    background: #5a6268;
+}
+
+.btn-submit:hover {
+    background: #3a56d4;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Notification for order form */
+.order-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--success);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-notification.error {
+    background: var(--accent);
+}
+
+.order-notification i {
+    font-size: 1.2rem;
+}
+
+/* Account type fields */
+.account-type-fields {
+    display: none;
+}
+
+.account-type-fields.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ===== BIRLASHGAN ANIMATSIYALAR ===== */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Responsive for order form */
+@media (max-width: 768px) {
+    .order-form-container {
+        padding: 15px;
+    }
+    
+    .form-step {
+        padding: 15px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-back,
+    .btn-submit {
+        width: 100%;
+    }
+}

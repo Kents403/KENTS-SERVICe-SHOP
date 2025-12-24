@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENTS SERVICE - O'yin Donatlari & Telegram Premium</title>
+    <!-- CSS fayllar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <h1><i class="fas fa-crown"></i> KENTS SERVICE</h1>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home"><i class="fas fa-home"></i> Bosh Sahifa</a></li>
+                    <li><a href="#games"><i class="fas fa-gamepad"></i> O'yin Donatlari</a></li>
+                    <li><a href="#telegram"><i class="fab fa-telegram"></i> Telegram</a></li>
+                    <li><a href="#crypto"><i class="fas fa-coins"></i> Kriptovalyuta</a></li>
+                    <li><a href="#contact"><i class="fas fa-headset"></i> Bog'lanish</a></li>
+                </ul>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>O'yin Donatlari va Telegram Mahsulotlari</h2>
+                <p>Eng arzon narxlarda - 100% ishonchli xizmat</p>
+                <a href="#games" class="btn-primary">Mahsulotlarni Ko'rish</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- O'yin Donatlari -->
+    <section class="section" id="games">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> O'yin Donatlari</h2>
+            <div class="tabs" id="gameTabs"></div>
+            <div class="products" id="gameProducts"></div>
+        </div>
+    </section>
+
+    <!-- Telegram Mahsulotlar -->
+    <section class="section bg-light" id="telegram">
+        <div class="container">
+            <h2 class="section-title"><i class="fab fa-telegram"></i> Telegram Mahsulotlari</h2>
+            <div class="tabs" id="telegramTabs"></div>
+            <div class="products" id="telegramProducts"></div>
+        </div>
+    </section>
+
+<!-- Kriptovalyuta -->
+<section class="section" id="crypto">
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-coins"></i> Kriptovalyuta</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Kriptovalyuta miqdorini tanlang. Narx hozirda o'zgarib turganligi sababli, buyurtma berganingizdan so'ng aniq narxni kelishib olaylik.
+        </p>
+        <div class="crypto-grid">
+            <div class="crypto-card">
+                <i class="fas fa-chart-line crypto-icon"></i>
+                <h3>TON Coin</h3>
+                <p class="price">Narx: Kelishiladi</p>
+                <p class="note">Har soat narx o'zgaradi. Miqdor tanlang.</p>
+                <button class="btn-crypto" data-crypto="TON">
+                    <i class="fas fa-cart-plus"></i> Miqdor Tanlash
+                </button>
+            </div>
+            <div class="crypto-card">
+                <i class="fas fa-dollar-sign crypto-icon"></i>
+                <h3>USDT (Tether)</h3>
+                <p class="price">Narx: Kelishiladi</p>
+                <p class="note">Har soat narx o'zgaradi. Miqdor tanlang.</p>
+                <button class="btn-crypto" data-crypto="USDT">
+                    <i class="fas fa-cart-plus"></i> Miqdor Tanlash
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Biz haqimizda -->
+    <section class="section bg-dark" id="about">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> Biz haqimizda</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-rocket about-icon"></i>
+                    <h3>Bizning missiyamiz</h3>
+                    <p>O'zbekiston bo'ylab o'yinchi va Telegram foydalanuvchilariga eng arzon va ishonchli xizmatlarni taqdim etish.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-shield-alt about-icon"></i>
+                    <h3>Kafolatimiz</h3>
+                    <p>Barcha tranzaksiyalar 100% xavfsiz va kafolatlangan. Agar muammo bo'lsa, pulingizni qaytaramiz.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-bolt about-icon"></i>
+                    <h3>Tezlik</h3>
+                    <p>O'yin va Telegram mahsulotlar <strong>5-60 daqiqada bajariladi</strong>. Kriptovalyuta esa darhol.</p>
+                </div>
+            </div>
+            
+            <div class="telegram-channel">
+                <i class="fab fa-telegram channel-icon"></i>
+                <h3>Barcha yangiliklardan xabardor bo'ling!</h3>
+                <p>Eng so'nggi chegirmalar, yangi mahsulotlar va aksiyalar haqida birinchi bo'lib bilish uchun telegram kanalimizga obuna bo'ling.</p>
+                <a href="https://t.me/KentsServic" class="btn-telegram-channel" target="_blank">
+                    <i class="fab fa-telegram"></i> @KentsServic kanaliga o'tish
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section bg-dark" id="contact">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-headset"></i> Bog'lanish</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fab fa-telegram"></i>
+                    <h3>Telegram Support</h3>
+                    <p>Buyurtma berish yoki savollar</p>
+                    <a href="https://t.me/kentservice_support" class="btn-telegram" target="_blank">
+                        @kentservice_support
+                    </a>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Tez Yetkazish</h3>
+                    <p>O'yin va Telegram mahsulotlar</p>
+                    <p><strong>5-120 daqiqada bajariladi</strong></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Ish vaqtimiz</h3>
+                    <p>Ertalab 8:30 dan</p>
+                    <p>Kechki 21:30 gacha</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-cart"></i> Savatingiz</h3>
+                <span class="close-cart">&times;</span>
+            </div>
+            <div class="cart-body">
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-total">
+                    Jami: <span id="cartTotal">0</span> UZS
+                </div>
+            </div>
+            <div class="cart-footer">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><i class="fas fa-crown"></i> KENTS SERVICE</h3>
+                    <p>O'zbekistonning eng ishonchli o'yin va Telegram xizmatlari provayderi</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Tez havolalar</h3>
+                    <a href="#games">O'yin donatlari</a>
+                    <a href="#telegram">Telegram mahsulotlari</a>
+                    <a href="about.html">Biz haqimizda</a>
+                    <a href="news.html">Yangiliklar</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Ijtimoiy tarmoqlar</h3>
+                    <a href="https://t.me/KentsServic" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram kanal
+                    </a>
+                    <a href="https://t.me/kentservice_support" target="_blank">
+                        <i class="fab fa-telegram"></i> Support
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KENTS SERVICE. Barcha huquqlar himoyalangan.</p>
+                <p class="footer-text">100% xavfsiz va ishonchli xizmat</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="products.js"></script>
+    <script src="telegram-opener.js"></script>
+    <script src="tracker.js"></script>
+    <script src="order-sync.js"></script>
+    <script src="order-form.js"></script>
+</body>
+</html>
