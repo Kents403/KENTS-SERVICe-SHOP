@@ -30,13 +30,13 @@ const products = {
         { id: 22, name: "Brawl Pass Plus", price: 77000, icon: "fas fa-ticket-alt" }
     ],
     
-    mlbb: [
-        { id: 23, name: "35 Almaz", price: 11111, icon: "fas fa-gem" },
-        { id: 24, name: "88 Almaz", price: 18888, icon: "fas fa-gem" },
-        { id: 25, name: "132 Almaz", price: 28888, icon: "fas fa-gem" },
-        { id: 26, name: "264 Almaz", price: 48888, icon: "fas fa-gem" },
-        { id: 27, name: "440 Almaz", price: 79999, icon: "fas fa-gem" }
-    ],
+    // mlbb: [
+    //     { id: 23, name: "35 Almaz", price: 11111, icon: "fas fa-gem" },
+    //     { id: 24, name: "88 Almaz", price: 18888, icon: "fas fa-gem" },
+    //     { id: 25, name: "132 Almaz", price: 28888, icon: "fas fa-gem" },
+    //     { id: 26, name: "264 Almaz", price: 48888, icon: "fas fa-gem" },
+    //     { id: 27, name: "440 Almaz", price: 79999, icon: "fas fa-gem" }
+    // ],
     
     roblox: [
         { id: 28, name: "40 Robux", price: 13000, icon: "fas fa-cube" },
@@ -306,4 +306,5 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+
 }
